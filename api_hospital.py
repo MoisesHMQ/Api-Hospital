@@ -20,3 +20,12 @@ def cadastro():
     paciente.append(entrada)
     return jsonify(entrada)
 
+@app.route("/entrada/medica", methods=['POST'])
+def logar():
+    sistema = request.json
+    for sistema in paciente:
+        if sistema["id"] == sistema["id"] and sistema["senha"] == sistema["senha"]:
+            return{"Status":"Login realizado."}
+        else:
+            return{"Erro.":"Dados do paciente incorretos."}
+
