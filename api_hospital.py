@@ -47,7 +47,21 @@ def ficha_hospital():
     return jsonify(ficha)
 
 @app.route("/pacientes/ativos")
-def carrinho():
+def pacientes():
     return jsonify(paciente)
 
+@app.route("/ficha/pacientes/ativos")
+def ficha():
+    return jsonify(doença_sintomas)
+
+
+
+@app.route("/excluir/pacientes", methods=['POST'])
+def excluir_pacientes():
+    dell = request.json
+    print(paciente)
+    for user in paciente:
+        if user["Nºficha"] == dell["Nºficha"]:
+            paciente.remove(user)
+            return dell
 app.run()
