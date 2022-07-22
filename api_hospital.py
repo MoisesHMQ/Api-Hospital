@@ -58,10 +58,22 @@ def ficha():
 
 @app.route("/excluir/pacientes", methods=['POST'])
 def excluir_pacientes():
-    dell = request.json
+    paciente_excluir = request.json
     print(paciente)
     for user in paciente:
-        if user["Nºficha"] == dell["Nºficha"]:
+        if user["Nºficha"] == paciente_excluir["Nºficha"]:
             paciente.remove(user)
-            return dell
+            return paciente_excluir
+
+@app.route("/excluir/fichas/ativas", methods=['POST'])
+def excluir_fichas():
+    ficha_excluir = request.json
+    print(doença_sintomas)
+    for list in doença_sintomas:
+        if list["indentificação"] == ficha_excluir["indentificação"]:
+            doença_sintomas.remove(list)
+            return ficha_excluir
+
+
+
 app.run()
