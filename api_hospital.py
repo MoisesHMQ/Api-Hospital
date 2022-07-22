@@ -27,5 +27,21 @@ def logar():
         if sistema["id"] == sistema["id"] and sistema["senha"] == sistema["senha"]:
             return{"Status":"Login realizado."}
         else:
-            return{"Erro.":"Dados do paciente incorretos."}
+            return{"Erro.":"Dados do paciente inidaderetos."}
 
+doença_sintomas = []
+
+@app.route("/ficha/paciente", methods=['POST'])
+def ficha_hospital():
+    ficha = request.json
+    for ficha in doença_sintomas:
+        if ficha["cid"] == ficha["cid"]:
+            return {"status": "Produto já cadastrado."}
+    ficha = {
+        "indentificação": str(uuid.uuid4()),
+        "nome":ficha["nome"],
+        "idade":ficha["idade"],
+        "cid": ficha["cid"]
+    }
+    doença_sintomas.append(ficha)
+    return jsonify(ficha)
