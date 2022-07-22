@@ -10,21 +10,21 @@ paciente = []
 def cadastro():
     entrada = request.json 
     for usuario in paciente:
-        if usuario["id"] == entrada["id"]:  
-            return {"Erro.":"ID ja cadastrado no sistema."}
+        if usuario["nome"] == entrada["nome"]:  
+            return {"Erro.":"paciente ja cadastrado no sistema."}
     entrada = {
+        "nome": entrada["nome"],
         "Nºficha": str(uuid.uuid4()),
-        "id": entrada["id"],
         "senha": entrada["senha"]
         }
     paciente.append(entrada)
     return jsonify(entrada)
 
-@app.route("/entrada/medica", methods=['POST'])
+@app.route("/entrada/paciente/sistema", methods=['POST'])
 def logar():
     sistema = request.json
     for sistema in paciente:
-        if sistema["id"] == sistema["id"] and sistema["senha"] == sistema["senha"]:
+        if sistema["Nºficha"] == sistema["Nºficha"] and sistema["senha"] == sistema["senha"]:
             return{"Status":"Login realizado."}
         else:
             return{"Erro.":"Dados do paciente inidaderetos."}
@@ -45,3 +45,9 @@ def ficha_hospital():
     }
     doença_sintomas.append(ficha)
     return jsonify(ficha)
+
+@app.route("/pacientes/ativos")
+def carrinho():
+    return jsonify(paciente)
+
+app.run()
