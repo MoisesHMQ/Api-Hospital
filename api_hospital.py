@@ -14,7 +14,7 @@ def cadastro():
             return {"Erro.":"paciente ja cadastrado no sistema."}
     entrada = {
         "nome": entrada["nome"],
-        "Nºficha": str(uuid.uuid4()),
+        "id": str(uuid.uuid4()),
         "senha": entrada["senha"]
         }
     paciente.append(entrada)
@@ -24,7 +24,7 @@ def cadastro():
 def logar():
     sistema = request.json
     for sistema in paciente:
-        if sistema["Nºficha"] == sistema["Nºficha"] and sistema["senha"] == sistema["senha"]:
+        if sistema["id"] == sistema["id"] and sistema["senha"] == sistema["senha"]:
             return{"Status":"Login realizado."}
         else:
             return{"Erro.":"Dados do paciente inidaderetos."}
@@ -61,7 +61,7 @@ def excluir_pacientes():
     paciente_excluir = request.json
     print(paciente)
     for user in paciente:
-        if user["Nºficha"] == paciente_excluir["Nºficha"]:
+        if user["id"] == paciente_excluir["id"]:
             paciente.remove(user)
             return paciente_excluir
 
